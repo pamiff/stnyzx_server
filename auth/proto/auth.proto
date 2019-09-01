@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service Auth {
+    rpc GetJwt(GetJwtRequest) returns (GetJwtResponse) {}
+}
+
+message GetJwtRequest {
+    string code = 1;
+}
+
+message GetJwtResponse {
+    string jwt = 1;
+}

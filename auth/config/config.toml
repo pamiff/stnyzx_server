@@ -1,0 +1,8 @@
+serviceName = "auth"
+
+[miniProgram]
+    apiId = "aa"
+    secret = "bb"
+
+[jwt]
+    signSecret = "cc"
