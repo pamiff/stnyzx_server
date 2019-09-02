@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/pamiff/stnyzx_server/auth/config"
 	"github.com/pamiff/stnyzx_server/auth/dao"
 	"github.com/pamiff/stnyzx_server/auth/service"
@@ -14,6 +15,7 @@ import (
 func main() {
 	cfg, err := config.LoadConfig()
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	d := dao.New(&cfg)

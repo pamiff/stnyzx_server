@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  stnyzx_server:
+    image: stnyzx_server
+    build: .
+    ports:
+      - 8080:8080

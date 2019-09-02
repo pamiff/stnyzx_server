@@ -4,6 +4,9 @@ import (
 	"errors"
 	"os"
 
+	"github.com/micro/go-micro/config/encoder/toml"
+	"github.com/micro/go-micro/config/source"
+
 	"github.com/micro/go-micro/config/source/file"
 	"github.com/micro/go-plugins/config/source/configmap"
 
@@ -24,10 +27,12 @@ func init() {
 
 func LoadConfig() (cfg Config, err error) {
 	c := config.NewConfig()
+	enc := toml.NewEncoder()
 	if ProgramEnvironment == "dev" {
 		if err = c.Load(
 			file.NewSource(
 				file.WithPath("../config/config.toml"),
+				source.WithEncoder(enc),
 			),
 		); err != nil {
 			return
@@ -43,6 +48,7 @@ func LoadConfig() (cfg Config, err error) {
 			configmap.NewSource(
 				configmap.WithNamespace("stnyzx-test"),
 				configmap.WithName(ServiceName),
+				source.WithEncoder(enc),
 			),
 		); err != nil {
 			return
@@ -62,6 +68,7 @@ func LoadConfig() (cfg Config, err error) {
 			configmap.NewSource(
 				configmap.WithNamespace("stnyzx-prod"),
 				configmap.WithName(ServiceName),
+				source.WithEncoder(enc),
 			),
 		); err != nil {
 			return
